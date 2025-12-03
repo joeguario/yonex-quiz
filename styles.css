@@ -1,116 +1,196 @@
-:root {
-    --bg: #f7f7f7;
-    --card: #fff;
-    --accent: #0073e6;
-    --accent-dark: #005bb5;
-    --selected: #ffce00;
-    --text: #111;
-}
-
-* {
-    box-sizing: border-box
-}
-
+/* --- General Container --- */
 body {
-    margin: 0;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-    background: var(--bg);
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.container {
-    width: 100%;
-    max-width: 400px;
-    background: var(--card);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+  text-align: center;
 }
 
 h1 {
-    font-size: 20px;
-    margin: 0 0 16px 0;
-    cursor: pointer;
-    color: var(--accent);
-    transition: color 0.2s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
-h1:hover {
-    color: var(--accent-dark)
+h2 {
+  margin: 15px 0;
 }
 
-#tournament-label {
-    font-weight: 600;
-    margin: 0 0 12px 0;
-    font-size: 14px;
-    color: #333;
+p.small {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  color: #333;
 }
 
+/* --- Choices Container --- */
 .choices {
-    display: flex;
-    gap: 10px;
-    margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;  /* center horizontally */
+  gap: 10px;                /* spacing between buttons */
+  margin: 10px 0;
 }
 
-.choice {
-    flex: 1;
-    padding: 14px 10px;
-    border-radius: 10px;
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.14s ease, background 0.14s ease;
-    min-height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.choice:hover {
-    background: var(--accent-dark);
-}
-
-.choice.selected {
-    background: var(--selected) !important;
-    color: #000 !important;
-}
-
+/* Results container for winners - fixed side-by-side layout */
 .results {
-    margin-top: 12px;
-    text-align: left;
+  display: flex;
+  justify-content: center;   /* center the row */
+  gap: 20px;                 /* fixed gap between winners */
+  flex-wrap: nowrap;          /* no wrapping, always side by side */
+  margin: 20px 0;
+  width: max-content;        /* shrink to content width */
+  margin-left: auto;
+  margin-right: auto;        /* center horizontally */
 }
 
+
+/* --- Choice Buttons --- */
+.choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;          /* square */
+  height: 120px;
+  border: 2px solid transparent;
+  border-radius: 0;      /* no rounded corners */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 3px rgba(0,0,0,0.7);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+  box-sizing: border-box;
+  background-color: #222;
+}
+
+/* Selected Choice */
+.choice.selected {
+  border-color: #FFD700; 
+  transform: scale(1.1);
+}
+
+/* Slide-in for right-side button */
+.choice.slide-in-right {
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInRight 0.25s forwards ease-out;
+}
+
+/* The "or" between choice buttons */
+.choices span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #333;
+  margin: 0 10px;
+  font-size: 1rem;
+  user-select: none; /* prevent text selection on tap */
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 480px) {
+  .choices span {
+    font-size: 0.9rem;
+    margin: 0 5px;
+  }
+}
+
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Fade + slide for container transitions */
+.fade-slide-in {
+  animation: fadeSlideIn 0.25s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Results Section --- */
 .results p {
-    margin: 6px 0;
-    font-weight: 600;
+  margin: 5px 0;
+  font-weight: bold;
 }
 
+
+
+/* Submit Entry Button */
 .btn {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0078d7;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .btn:hover {
-    background: var(--accent-dark);
+  background-color: #005ea3;
 }
 
-@media(max-width:360px) {
-    .choices {
-        flex-direction: column;
-    }
+.btn svg, .btn span {
+  margin-right: 5px;
+}
+
+
+/* Winner buttons on final screen */
+.winner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  margin: 10px auto;
+  border: 2px solid #FFD700; /* gold border for winners */
+  border-radius: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: #222;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 3px rgba(0,0,0,0.7);
+}
+
+/* Celebrate animation for winners */
+@keyframes celebrate {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(255,215,0,0); }
+  50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,215,0,0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,215,0,0); }
+}
+
+.winner.celebrate {
+  animation: celebrate 0.8s ease-out forwards;
+}
+
+.intro-copy {
+  margin: 10px 0 20px 0;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* --- Responsive: Mobile --- */
+@media (max-width: 480px) {
+  .choice {
+    width: 90px;
+    height: 90px;
+    font-size: 0.8rem;
+  }
 }
