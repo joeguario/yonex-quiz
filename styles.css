@@ -1,0 +1,112 @@
+/* Basic page layout */
+:root{
+  --bg:#f7f7f7;
+  --card:#ffffff;
+  --accent:#0073e6;
+  --accent-dark:#005bb5;
+  --selected:#ffce00;
+  --text:#111;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+/* card container */
+.container{
+  width:100%;
+  max-width:430px;
+  background:var(--card);
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  padding:20px;
+  text-align:center;
+}
+
+/* tournament label */
+#tournament-label{
+  font-weight:700;
+  margin:0 0 8px 0;
+  color:#333;
+  font-size:14px;
+}
+
+/* headings */
+h1,h2{
+  margin:0;
+  font-weight:700;
+}
+h2{font-size:18px;margin-bottom:12px}
+
+/* choices layout */
+.choices{
+  display:flex;
+  gap:10px;
+  margin-top:16px;
+}
+.choice{
+  flex:1;
+  padding:14px 10px;
+  border-radius:12px;
+  background:var(--accent);
+  color:#fff;
+  cursor:pointer;
+  user-select:none;
+  font-size:15px;
+  line-height:1.2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .14s ease, background .14s ease, box-shadow .14s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  min-height:56px;
+}
+.choice:active{ transform: translateY(1px); }
+.choice:hover{ background:var(--accent-dark); }
+
+/* selected style */
+.choice.selected{
+  background:var(--selected) !important;
+  color:#000 !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+/* single-column fallback for small width */
+@media (max-width:360px){
+  .choices{ flex-direction:column; }
+}
+
+/* small helper styles */
+.small{
+  font-size:13px;
+  color:#666;
+  margin-top:12px;
+}
+
+/* final screen styling */
+.results{
+  text-align:left;
+  margin-top:12px;
+}
+.results p{margin:8px 0;font-weight:600}
+.btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 14px;
+  border-radius:10px;
+  background:var(--accent);
+  color:#fff;
+  text-decoration:none;
+  cursor:pointer;
+}
